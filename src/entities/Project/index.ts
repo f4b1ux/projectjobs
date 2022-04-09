@@ -43,7 +43,6 @@ export class Project {
     // --> salvataggio/aggiornamento job esistenti
     await Promise.all(this.jobs.map(job => job.save(this)))
   }
-
   public async delete(): Promise<void> {
     const query = `DELETE FROM projects WHERE id = ?`
     await db.execute(query, [this.id])
@@ -51,6 +50,9 @@ export class Project {
 
   public async getJobs(): Promise<void> {
     this.jobs = await Job.getByProject(this)
+  }
+  public addJob(job: Job): Promise<void> {
+    return  job.save(this)
   }
 
   static async getAll(): Promise<Project[]> {
