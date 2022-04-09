@@ -44,17 +44,20 @@ export class Job {
 
     if(!this.id) this.id = (result as ResultSetHeader).insertId
   }
-
   public async delete() {
     const query = `DELETE FROM jobs WHERE id = ?`
     return db.execute(query, [this.id])
   }
-
   static async getByProject(project: Project): Promise<Job[]> {
     const query = `SELECT id, creationDate, price, status FROM jobs WHERE projectId = ?`
     const [results] = await db.execute(query, [project.id])
 
     return (results as iJob[]).map(job => new Job(job))
   }
+  static async getAll(): Promise<Job[]> {
+    const query = `SELECT * FROM jobs ORDER BY id ASC`
+    const [results] = await db.execute(query)
 
+    return (results as iJob[]).map(job => new Job(job))
+  }
 }
