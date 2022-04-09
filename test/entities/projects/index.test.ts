@@ -1,20 +1,15 @@
-import {Project} from '@entities'
-import {db, initializePool} from '@services'
+import { Project } from '@entities'
+import { db, initializePool } from '@services'
 import moment from 'moment'
-import {initDB, resetDB, projectsFactory, jobsFactory} from '../../db_init'
-import {sortById} from '../../helpers/sortById'
+import { initDB, resetDB, projectsFactory, jobsFactory } from '../../db_init'
+import { sortById } from '../../helpers/sortById'
+import { database } from '../../configuration.json'
 
 let projects: Project[]
 
 describe('Project', () => {
   beforeAll( () => {
-    initializePool({
-      host: 'localhost',
-      port: 3307,
-      user: 'root',
-      password: 'awesomeRootPassword',
-      database: 'projectsjobs'
-    })
+    initializePool(database)
   })
   beforeEach(async () => {
     await resetDB()
@@ -140,5 +135,3 @@ describe('Project', () => {
     expect(jobs).toHaveLength(0)
   })
 })
-
-//https://stackoverflow.com/questions/62105729/run-jest-tests-in-docker-compose-with-mongodb-and-redis
