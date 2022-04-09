@@ -1,12 +1,16 @@
 import http from 'http'
 import express from 'express'
 import bodyParser from 'body-parser'
-import { api_port } from '../configuration.json'
-import { logger } from '@services'
+import { api_port, database } from '../configuration.json'
+import { logger, initializePool } from '@services'
 import { log, handleErrors } from '@middlewares'
 import routes from './routes'
 
 const main = async () => {
+
+  // Inizializzazione del pool di connessione
+  initializePool(database)
+
   const app = express()
   const webserver = http.createServer(app)
 

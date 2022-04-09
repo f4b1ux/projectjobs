@@ -1,4 +1,9 @@
-import { createPool } from 'mysql2/promise'
-import { database } from '../../../configuration.json'
+import { createPool, Pool } from 'mysql2/promise'
 
-export const db = createPool(database)
+let db: Pool
+
+export const initializePool = conf => {
+  db = createPool(conf)
+}
+
+export { db }

@@ -1,0 +1,12 @@
+version: "3"
+services:
+  mariadb:
+    image: "mariadb:latest"
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "awesomeRootPassword"
+      MYSQL_DATABASE: "projectsjobs"
+    volumes:
+      - $PWD/scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    container_name: "ff_mariadb"

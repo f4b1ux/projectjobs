@@ -6,8 +6,15 @@
   "scripts": {
     "build": "del-cli dist && ttsc",
     "start": "npm run build && node dist/src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-test-env": "docker compose -f 'test/scripts/docker-compose.yaml' up -d",
+    "stop-test-env": "docker compose -f 'test/scripts/docker-compose.yaml' down",
+    "restart-test-env": "npm run stop-test-env && npm run start-test-env",
+    "test-entities": "jest ./test/entities --forceExit --detectOpenHandles --maxWorkers=10",
+    "test": "npm run start-test-env && jest ./test --forceExit --detectOpenHandles --runInBand && npm run stop-test-env"
   },
+  "pre-commit": [
+    "test-entities"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/f4b1ux/projectsjobs.git"
@@ -19,8 +26,12 @@
   },
   "homepage": "https://github.com/f4b1ux/projectsjobs#readme",
   "devDependencies": {
+    "@types/jest": "^27.4.1",
     "del-cli": "^4.0.1",
     "eslint": "^8.12.0",
+    "jest": "^27.5.1",
+    "pre-commit": "^1.2.2",
+    "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
     "ttypescript": "^1.5.13",
     "typescript": "^4.6.3",
