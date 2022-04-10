@@ -66,8 +66,9 @@ export class Project {
    * Add a new job to project
    * @param job
    */
-  public addJob(job: Job): Promise<void> {
-    return  job.save(this)
+  public async addJob(job: Job): Promise<void> {
+    await job.save(this)
+    this.jobs.push(job)
   }
 
   /**

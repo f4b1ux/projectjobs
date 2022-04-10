@@ -11,6 +11,7 @@ module.exports = {
   moduleNameMapper: {
     '^@services$': '<rootDir>/src/services',
     '^@entities$': '<rootDir>/src/entities',
+    '^@middlewares': '<rootDir>/src/services/rest/middlewares'
   },
   restoreMocks: true
 }

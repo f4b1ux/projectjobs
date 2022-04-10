@@ -1,5 +1,5 @@
 import {Job, Project} from '@entities'
-import { initializePool, db } from '@services'
+import {initializePool, db, closePool} from '@services'
 import moment from 'moment'
 import { database } from '../../configuration.json'
 import {initDB, randomStatus, resetDB} from '../../db_init'
@@ -15,6 +15,7 @@ describe('Jobs', () => {
     projects = await initDB()
     jobs = projects.map(p => p.jobs).flat()
   })
+  afterAll(() => closePool())
 
   it('Should save all jobs of projects returned by initDB', async () => {
     const query = `SELECT * FROM jobs ORDER BY id ASC`
