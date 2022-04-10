@@ -6,4 +6,6 @@ export const initializePool = conf => {
   db = createPool(conf)
 }
 
+export const closePool = () => db.end()
+
 export { db }

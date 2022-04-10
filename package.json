@@ -10,10 +10,12 @@
     "stop-test-env": "docker compose -f 'test/scripts/docker-compose.yaml' down",
     "restart-test-env": "npm run stop-test-env && npm run start-test-env",
     "test-entities": "jest ./test/entities --forceExit --detectOpenHandles --maxWorkers=10",
-    "test": "npm run start-test-env && jest ./test --forceExit --detectOpenHandles --runInBand && npm run stop-test-env"
+    "test-endpoints": "jest ./test/routes --forceExit --detectOpenHandles --maxWorkers=10",
+    "test": "jest ./test --forceExit --detectOpenHandles --runInBand"
   },
   "pre-commit": [
-    "test-entities"
+    "test-entities",
+    "test-endpoints"
   ],
   "repository": {
     "type": "git",
@@ -31,6 +33,7 @@
     "eslint": "^8.12.0",
     "jest": "^27.5.1",
     "pre-commit": "^1.2.2",
+    "supertest": "^6.2.2",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
     "ttypescript": "^1.5.13",

@@ -1,5 +1,5 @@
 import { Project } from '@entities'
-import { db, initializePool } from '@services'
+import {closePool, db, initializePool} from '@services'
 import moment from 'moment'
 import { initDB, resetDB, projectsFactory, jobsFactory } from '../../db_init'
 import { sortById } from '../../helpers/sortById'
@@ -15,6 +15,7 @@ describe('Project', () => {
     await resetDB()
     projects = await initDB()
   })
+  afterAll(() => closePool())
 
   it('Should save all projects returned by initDb', async () => {
     const [projectsFromDB] = await db.execute(`SELECT * FROM projects ORDER BY id ASC`)

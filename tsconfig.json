@@ -11,7 +11,8 @@
     "paths": {
       "@entities": ["entities"],
       "@services": ["services"],
-      "@middlewares": ["middlewares"]
+      "@middlewares": ["services/rest/middlewares"],
+      "@types": ["types"]
     },
     "plugins": [
       { "transform": "typescript-transform-paths" },
