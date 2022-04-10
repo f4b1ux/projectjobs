@@ -8,5 +8,5 @@ services:
       MYSQL_ROOT_PASSWORD: "awesomeRootPassword"
       MYSQL_DATABASE: "projectsjobs"
     volumes:
-      - $PWD/scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - $PWD/test/scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
     container_name: "ff_mariadb"

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "del-cli dist && ttsc",
-    "start": "npm run build && node dist/src/index.js",
+    "start-local": "npm run build && node dist/src/index.js",
+    "start-docker": "npm run build && docker-compose up -d",
     "start-test-env": "docker compose -f 'test/scripts/docker-compose.yaml' up -d",
     "stop-test-env": "docker compose -f 'test/scripts/docker-compose.yaml' down",
     "restart-test-env": "npm run stop-test-env && npm run start-test-env",
