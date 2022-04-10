@@ -1,10 +1,10 @@
 import { Router } from 'express'
 import projects from './projects'
+import jobs from './jobs'
 
 const router = Router()
 
-// TODO
-// router.use('/jobs')
 router.use('/projects', projects)
+router.use('/jobs', jobs)
 
 export default router

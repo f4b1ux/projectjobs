@@ -108,7 +108,7 @@ export class Job {
   /**
    * Returns all jobs ordered by creationDate, asc or desc
    */
-  static async getAllSortedByCreationDate(mode: 'asc' | 'desc'): Promise<Job[]> {
+  static async getAllSortedByCreationDate(mode: string): Promise<Job[]> {
     const query = `SELECT * FROM jobs ORDER BY creationDate ${mode}`
     const [results] = await db.execute(query)
 
