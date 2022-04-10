@@ -1,9 +1,9 @@
 {
   "database": {
-    "host": "",
-    "user": "",
-    "password": "",
-    "db": "",
+    "host": "mariadb_pj",
+    "user": "root",
+    "password": "awesomeRootPassword",
+    "database": "projectsjobs",
     "connectionLimit": 10
   },
   "api_port": 3000,
