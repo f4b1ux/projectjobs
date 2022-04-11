@@ -3,8 +3,6 @@ import { logger, initializePool, initializeRoutes } from '@services'
 
 const main = async () => {
 
-  console.log(database, api_port)
-
   // Database pool init
   initializePool(database)
 
